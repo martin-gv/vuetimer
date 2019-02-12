@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vue Timer | Martin Guardado | Portfolio</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <h1>Vue Timer</h1>
+      <div
+        v-for="t in timers"
+        v-bind:class="{paused: !t.interval && t.ms > 0}"
+        class="card"
+      >
+        <div class="timerMain">
+          <div v-bind:class="{done: t.ms <= 0}" class="timeLeft">
+            <span v-if="t.clock.h">{{ pad(t.clock.h) }}:</span
+            ><span>{{ pad(t.clock.m) }}:</span><span>{{ pad(t.clock.s) }}</span>
+          </div>
+        </div>
+        <div v-bind:class="{done: t.ms <= 0}" class="timerControls">
+          <button
+            v-on:click="pauseResume(t)"
+            v-bind:disabled="t.ms <=0"
+            v-bind:class="{done: t.ms <= 0}"
+            class="vtButton pauseResume"
+          >
+            <i v-if="t.interval || !t.interval && t.ms <=0" class="fas fa-pause"></i>
+            <i v-else class="fas fa-play"></i>
+          </button>
+        </div>
+        <button v-on:click="deleteTimer(t)" class="trash">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+      <template v-if="timers.length < 3">
+        <div class="newTimerInputs">
+          <div class="inputGroup">
+            <input
+              v-model="newTimerInput.h"
+              v-on:keyup.enter="newTimer(newTimerInput)"
+              v-bind:disabled="timers.length >= 3"
+              placeholder="00"
+              maxlength="2"
+              id="hours"
+              class="timeInput"
+            />
+            <label for="hours">hours</label>
+          </div>
+          <div class="inputGroup">
+            <input
+              v-model="newTimerInput.m"
+              v-on:keyup.enter="newTimer(newTimerInput)"
+              v-bind:disabled="timers.length >= 3"
+              placeholder="00"
+              maxlength="2"
+              id="minutes"
+              class="timeInput"
+            />
+            <label for="minutes">minutes</label>
+          </div>
+          <div class="inputGroup">
+            <input
+              v-model="newTimerInput.s"
+              v-on:keyup.enter="newTimer(newTimerInput)"
+              v-bind:disabled="timers.length >= 3"
+              placeholder="00"
+              maxlength="2"
+              id="seconds"
+              class="timeInput"
+            />
+            <label for="seconds">seconds</label>
+          </div>
+        </div>
+        <button
+          v-on:click="newTimer(newTimerInput)"
+          v-bind:disabled="timers.length >= 3"
+          class="vtButton start"
+        >
+          Start
+        </button>
+      </template>
+      <div v-else class="instructions">
+        Maximum of 3 timers allowed
+      </div>
+    </div>
+    <script src="src/vue.min.js"></script>
+    <script src="src/main.js"></script>
+  </body>
+</html>
