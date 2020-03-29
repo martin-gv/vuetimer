@@ -13,7 +13,7 @@ A timer web-app built using [Vue.js](https://vuejs.org/).
 
 ## Notes
 
-**[Live Demo](https://martin-gv.com/vuetimer)**
+**[Live Demo](https://vuetimer.martin-gv.com)**
 
 Timers are tracked in 10ms increments for better accuracy when pausing and restarting. User input for new timers is translated to clock format. For example, 90 minutes becomes 1h:30m:00s.
 
