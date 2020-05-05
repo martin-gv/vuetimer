@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Vue Timer | Martin Guardado | Portfolio</title>
+    <title>Vue Timer</title>
     <link rel="stylesheet" href="src/style.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:100,300"
@@ -38,7 +38,10 @@
             v-bind:class="{done: t.ms <= 0}"
             class="vtButton pauseResume"
           >
-            <i v-if="t.interval || !t.interval && t.ms <=0" class="fas fa-pause"></i>
+            <i
+              v-if="t.interval || !t.interval && t.ms <=0"
+              class="fas fa-pause"
+            ></i>
             <i v-else class="fas fa-play"></i>
           </button>
         </div>
